@@ -1,0 +1,29 @@
+{
+  "name": "api-express-db",
+  "version": "1.0.0",
+  "description": "A project to build an API and connect it with a PostgreSQL database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoLira-ChE/-api-express-db.git"
+  },
+  "keywords": [
+    "postgresql",
+    "prisma",
+    "express",
+    "api"
+  ],
+  "author": "Gustavo Lira <gu.lirar23@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GustavoLira-ChE/-api-express-db/issues"
+  },
+  "homepage": "https://github.com/GustavoLira-ChE/-api-express-db#readme",
+  "devDependencies": {
+    "express": "^4.18.1",
+    "prisma": "^3.13.0"
+  }
+}
