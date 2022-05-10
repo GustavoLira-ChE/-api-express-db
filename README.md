@@ -25,6 +25,10 @@ DATABASE_URL="postgresql://TUUSUARIO:PASSWORD@localhost:5432/explorers_api?schem
 If you want to try this project easier, you can use POSTMAN to run send HTTP request to the endpoint.
 
 ## API endpoints
-|Type|Route|
-|-----|-----|
-|Get explorers or users| localhost:PORT/explorers or localhost:PORT/users| 
+|Type|Route|Body|
+|-----|-----|-----|
+| Get explorers or users | localhost:PORT/explorers or localhost:PORT/users | Do not apply |
+| Get explorer or user by ID | localhost:PORT/explorers/id or localhost:PORT/users/id | Do not apply |
+| Create a new explorer or user | localhost:PORT/explorers or localhost:PORT/users |`{name: name, username: username, mission: mission}` or `{name: name, lang: lang, missionComander: commander, enrollments: 1}` |
+| Update a explorer mission or user missionComander by ID | localhost:PORT/explorers/1 or localhost:PORT/users/1 | `{mission: mission}` or `{missionComander: commander}` |
+| Delete a explorer or user by ID | localhost:PORT/explorers/1 or localhost:PORT/users/1 | Do not apply |
