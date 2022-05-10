@@ -7,13 +7,19 @@ const port = process.env.PORT || 3000;
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+//Require to use CORS
+const cors = require("cors");
+const corsOptions = {
+    origin: "http://localhost:8081"
+};
+
 app.get('/', (req, res) => {
   res.json({message: 'alive'});
 });
-
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
 });
+app.use(cors(corsOptions));
 
 /* Agrega un nuevo endpoint GET en tu server.js que regrese todos los explorers. Prúebalo en la url: localhost:3000/explorers */
 app.get('/explorers', async (req, res) => {
