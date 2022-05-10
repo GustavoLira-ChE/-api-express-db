@@ -73,6 +73,8 @@ app.delete('/explorers/:id', async (req, res) => {
 	return res.json({message: "Eliminado correctamente"});
 });
 
+
+// User Table CRUD
 app.get('/users', async(req, res) => {
     const allUser =  await prisma.user.findMany({});
     res.status(200).json(allUser);
@@ -94,7 +96,7 @@ app.post('/users', async(req, res) => {
           lang: req.body.lang,
           missionCommander: req.body.missionCommander,
           enrollments: req.body.enrollments
-         };
+        };
         const message = 'User creado.';
         await prisma.user.create({data: user});
         return res.json({message});
@@ -119,6 +121,60 @@ app.delete('/users/:id', async(req, res) => {
     const id = parseInt(req.params.id);
 
     await prisma.user.delete({
+        where: {
+            id: id
+        }
+    });
+    return res.status(200).json({delete: 'resource deleted successfully'});
+});
+
+//Mission commander Table CRUD
+app.get('/missionCommanders', async(req, res) => {
+    const allMissionCommanders = await prisma.missionCommander.findMany({});
+    res.status(200).json(allMissionCommanders);
+});
+app.get('/missionCommanders/:id', async(req, res) => {
+    const id = req.params.id;
+    const missionCommander = await prisma.missionCommander.findUnique({where: {id: parseInt(id)}});
+    if(missionCommander === null){
+        res.status(200).json({missionCommanderID: "Not found"})
+    } else{
+        res.status(200).json(missionCommander);
+    }
+});
+app.post('/missionCommanders', async(req, res) => {
+    try{
+        const missionCommander = {
+            name: req.body.name,
+            username: req.body.username,
+            mainStack: req.body.mainStack,
+            currentEnrollment: req.body.currentEnrollment,
+            hasAzureCertification: req.body.hasAzureCertification
+         };
+        const message = 'Mission commander created.';
+        await prisma.missionCommander.create({data: missionCommander});
+        return res.json({message});
+    } catch (error) {
+        console.error(error);
+    }
+});
+app.put('/missionCommanders/:id', async(req, res) => {
+    const id = parseInt(req.params.id);
+
+    await prisma.missionCommander.update({
+        where: {
+            id: id
+        },
+        data: {
+            mainStack: req.body.mainStack
+        }
+    });
+    return res.status(200).json({update: 'resource updated successfully'});
+});
+app.delete('/missionCommanders/:id', async(req, res) => {
+    const id = parseInt(req.params.id);
+
+    await prisma.missionCommander.delete({
         where: {
             id: id
         }
