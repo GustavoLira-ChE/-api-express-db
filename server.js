@@ -67,3 +67,56 @@ app.delete('/explorers/:id', async (req, res) => {
 	return res.json({message: "Eliminado correctamente"});
 });
 
+app.get('/users', async(req, res) => {
+    const allUser =  await prisma.user.findMany({});
+    res.status(200).json(allUser);
+});
+
+app.get('/users/:id', async(req, res) => {
+    const id = req.params.id;
+    const user = await prisma.user.findUnique({where: {id: parseInt(id)}});
+    if(user === null){
+        res.status(200).json({userID: "Not found"})
+    } else{
+        res.status(200).json(user);
+    }
+});
+app.post('/users', async(req, res) => {
+    try{
+        const user = {
+          name: req.body.name,
+          lang: req.body.lang,
+          missionCommander: req.body.missionCommander,
+          enrollments: req.body.enrollments
+         };
+        const message = 'User creado.';
+        await prisma.user.create({data: user});
+        return res.json({message});
+    } catch (error) {
+        console.error(error);
+    }
+});
+app.put('/users/:id', async(req, res) => {
+    const id = parseInt(req.params.id);
+
+    await prisma.user.update({
+        where: {
+            id: id
+        },
+        data: {
+            missionCommander: req.body.missionCommander
+        }
+    });
+    return res.status(200).json({update: 'resource updated successfully'});
+});
+app.delete('/users/:id', async(req, res) => {
+    const id = parseInt(req.params.id);
+
+    await prisma.user.delete({
+        where: {
+            id: id
+        }
+    });
+    return res.status(200).json({delete: 'resource deleted successfully'});
+});
+
