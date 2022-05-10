@@ -17,12 +17,12 @@ Run:
 npm install
 ```
 
-Create a `.env` file, you need to add the next line, modified your postgresUser and your password
+Create a `.env` file, you need to add the next line, modifying your postgresUser and your password
 ```
 DATABASE_URL="postgresql://TUUSUARIO:PASSWORD@localhost:5432/explorers_api?schema=public"
 ```
 
-If you want to try this project easier, you can use POSTMAN to run send HTTP request to the endpoint.
+If you want to try this project easier, you can use (POSTMAN)[https://www.postman.com/] to run send HTTP request to the endpoint.
 
 ## API endpoints
 |Type|Route|Body|
